@@ -1,13 +1,22 @@
 package com.shulha.model;
 
 import com.shulha.enums.EmploymentTypes;
+import org.hibernate.annotations.GenericGenerator;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "person")
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Person {
+    @Id
+    @GeneratedValue(strategy = javax.persistence.GenerationType.AUTO, generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private String id;
     private String name;
     private String surname;
     private int age;
-
+    @Column(name = "employment_type")
     private EmploymentTypes employmentType;
 
     public Person() {

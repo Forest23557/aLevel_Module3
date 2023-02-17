@@ -1,12 +1,21 @@
 package com.shulha.model;
 
 import com.shulha.enums.EmploymentTypes;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Entity
+@Table(name = "student")
 public class Student extends Person {
+    @Column(name = "entry_date_time")
     private LocalDateTime entryDateTime;
+    @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "student_id")
+    @Fetch(FetchMode.SUBSELECT)
     private List<Mark> marks;
 
     public Student() {

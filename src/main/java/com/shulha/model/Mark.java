@@ -1,12 +1,25 @@
 package com.shulha.model;
 
 import com.shulha.enums.Subjects;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.GenericGenerator;
 
+import javax.persistence.*;
 import java.util.Optional;
 
+@Entity
+@Table(name = "mark")
 public class Mark {
+    @Id
+    @GeneratedValue(strategy = javax.persistence.GenerationType.AUTO, generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private String id;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "subject_id")
+    @Fetch(FetchMode.JOIN)
     private Subject subject;
+    @Column(name = "mark_value")
     private int mark;
 
     public Mark() {

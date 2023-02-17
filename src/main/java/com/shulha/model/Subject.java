@@ -1,11 +1,19 @@
 package com.shulha.model;
 
 import com.shulha.enums.Subjects;
+import org.hibernate.annotations.GenericGenerator;
 
+import javax.persistence.*;
 import java.util.Optional;
 
+@Entity
+@Table(name = "subject")
 public class Subject {
+    @Id
+    @GeneratedValue(strategy = javax.persistence.GenerationType.AUTO, generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private String id;
+    @Column(name = "subject_name")
     private Subjects subject;
 
     public Subject() {

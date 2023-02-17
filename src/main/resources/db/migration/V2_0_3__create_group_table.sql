@@ -1,0 +1,4 @@
+CREATE TABLE IF NOT EXISTS "student_group" (
+"id" VARCHAR(36) NOT NULL PRIMARY KEY,
+"group_name" INTEGER NOT NULL
+);
