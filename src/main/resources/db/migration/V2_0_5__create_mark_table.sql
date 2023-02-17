@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS "mark" (
 "id" VARCHAR(36) NOT NULL PRIMARY KEY,
-"subject_id" VARCHAR(36),
+"subject_id" VARCHAR(36) NOT NULL,
 "mark_value" INTEGER NOT NULL,
 "student_id" VARCHAR(36) NOT NULL,
 FOREIGN KEY ("subject_id")
