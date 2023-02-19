@@ -35,7 +35,7 @@ public abstract class PersonBuilder<T extends PersonBuilder> implements PersonBu
     public PersonBuilderInterface setSurname(final String surname) {
         Optional.ofNullable(surname)
                 .filter(surname1 -> !surname1.isBlank())
-                .ifPresent(surname1 -> person.setName(surname1));
+                .ifPresent(surname1 -> person.setSurname(surname1));
 
         return this;
     }

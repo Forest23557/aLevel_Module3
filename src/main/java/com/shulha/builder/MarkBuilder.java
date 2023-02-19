@@ -13,6 +13,11 @@ public class MarkBuilder implements MarkBuilderInterface {
         this.mark = new Mark();
     }
 
+    public MarkBuilder(final Mark mark) {
+        this.mark = Optional.ofNullable(mark)
+                .orElseGet(Mark::new);
+    }
+
     @Override
     public MarkBuilderInterface setId(final String id) {
         Optional.ofNullable(id)

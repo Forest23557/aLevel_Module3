@@ -6,6 +6,7 @@ import com.shulha.config.FlywayUtil;
 import com.shulha.enums.Subjects;
 import com.shulha.model.Student;
 import com.shulha.model.Subject;
+import com.shulha.service.UniversityService;
 import org.flywaydb.core.Flyway;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,5 +23,8 @@ public class Main {
         LOGGER.info("Migration is starting...");
         flyway.migrate();
         LOGGER.info("Migration was successfully completed!");
+
+        final UniversityService instance = UniversityService.getInstance();
+        System.out.println(instance.getLecturer());
     }
 }

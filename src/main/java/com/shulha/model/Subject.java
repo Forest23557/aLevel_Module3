@@ -57,9 +57,10 @@ public class Subject {
     @Override
     public String toString() {
         return String.format(
-                "Subject %n" +
+                "Subject {%n" +
                         "id = %s, %n" +
-                        "name = %s",
+                        "name = %s%n" +
+                        "}",
                 id, subject
         );
     }

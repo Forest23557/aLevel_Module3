@@ -73,10 +73,12 @@ public class Mark {
     @Override
     public String toString() {
         return String.format(
-                "Mark %n" +
+                "Mark {%n" +
                         "id = %s, %n" +
                         "%s, %n" +
-                        "mark value = %s%n"
+                        "mark value = %s%n" +
+                        "}%n",
+                id, subject, mark
         );
     }
 }
