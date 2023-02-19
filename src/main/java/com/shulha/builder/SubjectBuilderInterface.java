@@ -5,6 +5,6 @@ import com.shulha.model.Subject;
 
 public interface SubjectBuilderInterface {
     SubjectBuilderInterface setId(final String id);
-    SubjectBuilderInterface setSubjectValue(final Subjects subject);
+    SubjectBuilderInterface setSubjectValue(final Subjects subjectValue);
     Subject getSubject();
 }

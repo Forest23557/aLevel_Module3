@@ -22,13 +22,11 @@ public class Subject {
     }
 
     public Subject(final Subjects subject) {
-        this.subject = Optional.ofNullable(subject)
-                .orElseGet(() -> Subjects.NONE);
+        this.subject = subject;
     }
 
     public void setSubject(final Subjects subject) {
-        this.subject = Optional.ofNullable(subject)
-                .orElseGet(() -> Subjects.NONE);
+        this.subject = subject;
     }
 
     public void setId(final String id) {

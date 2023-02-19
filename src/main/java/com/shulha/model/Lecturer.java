@@ -1,5 +1,6 @@
 package com.shulha.model;
 
+import com.shulha.enums.EmploymentTypes;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -15,6 +16,7 @@ public class Lecturer extends Person {
     private Subject subject;
 
     public Lecturer() {
+        setEmploymentType(EmploymentTypes.LECTURER);
     }
 
     public Lecturer(final Subject subject) {

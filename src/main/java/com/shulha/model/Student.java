@@ -22,7 +22,6 @@ public class Student extends Person {
 
     public Student() {
         setEmploymentType(EmploymentTypes.STUDENT);
-        this.entryDateTime = LocalDateTime.now();
     }
 
     public void setEntryDateTime(final LocalDateTime entryDateTime) {

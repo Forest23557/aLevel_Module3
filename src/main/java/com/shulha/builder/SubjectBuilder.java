@@ -3,6 +3,9 @@ package com.shulha.builder;
 import com.shulha.enums.Subjects;
 import com.shulha.model.Subject;
 
+import java.util.Objects;
+import java.util.Optional;
+
 public class SubjectBuilder implements SubjectBuilderInterface {
     private Subject subject;
 
@@ -10,16 +13,23 @@ public class SubjectBuilder implements SubjectBuilderInterface {
         this.subject = new Subject();
     }
 
-    // TODO: 2/19/2023 Setup checks
     @Override
     public SubjectBuilderInterface setId(final String id) {
-        this.subject.setId(id);
+        Optional.ofNullable(id)
+                .filter(id1 -> !id1.isBlank())
+                .ifPresent(id1 -> subject.setId(id1));
+
         return this;
     }
 
     @Override
-    public SubjectBuilderInterface setSubjectValue(final Subjects subject) {
-        this.subject.setSubject(subject);
+    public SubjectBuilderInterface setSubjectValue(final Subjects subjectValue) {
+        Optional.ofNullable(subjectValue)
+                .ifPresentOrElse(
+                        subj -> subject.setSubject(subj),
+                        () -> subject.setSubject(Subjects.NONE)
+                );
+
         return this;
     }
 

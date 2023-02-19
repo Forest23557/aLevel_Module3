@@ -24,17 +24,15 @@ public class Group {
     @Fetch(FetchMode.SUBSELECT)
     private List<Student> students;
 
+    public Group() {
+    }
+
     public void setId(final String id) {
         this.id = id;
     }
 
-    public Group() {
-        this.group = Groups.NONE;
-    }
-
     public void setGroup(final Groups group) {
-        this.group = Optional.ofNullable(group)
-                .orElseGet(() -> Groups.NONE);
+        this.group = group;
     }
 
     public void setStudents(final List<Student> students) {
