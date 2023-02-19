@@ -6,11 +6,13 @@ import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Entity
 @Table(name = "student")
 public class Student extends Person {
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
     @Column(name = "entry_date_time")
     private LocalDateTime entryDateTime;
     @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -20,6 +22,7 @@ public class Student extends Person {
 
     public Student() {
         setEmploymentType(EmploymentTypes.STUDENT);
+        this.entryDateTime = LocalDateTime.now();
     }
 
     public void setEntryDateTime(final LocalDateTime entryDateTime) {
@@ -36,5 +39,16 @@ public class Student extends Person {
 
     public List<Mark> getMarks() {
         return marks;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() +
+                String.format(
+                        "entry date and time = %s, %n" +
+                                "marks = %n" +
+                                "%s",
+                        entryDateTime.format(DATE_TIME_FORMATTER), marks
+                );
     }
 }

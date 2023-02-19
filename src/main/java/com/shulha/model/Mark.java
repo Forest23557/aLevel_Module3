@@ -6,6 +6,7 @@ import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.Objects;
 import java.util.Optional;
 
 @Entity
@@ -54,5 +55,28 @@ public class Mark {
 
     public int getMark() {
         return mark;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Mark mark = (Mark) o;
+        return Objects.equals(id, mark.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return String.format(
+                "Mark %n" +
+                        "id = %s, %n" +
+                        "%s, %n" +
+                        "mark value = %s%n"
+        );
     }
 }

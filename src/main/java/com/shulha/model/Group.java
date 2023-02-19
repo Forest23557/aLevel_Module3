@@ -7,6 +7,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Entity
@@ -50,5 +51,29 @@ public class Group {
 
     public List<Student> getStudents() {
         return students;
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Group group = (Group) o;
+        return Objects.equals(id, group.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return String.format(
+                "Group %s: " +
+                        "%s, %n" +
+                        "students = %n" +
+                        "%s",
+                id, group, students
+        );
     }
 }

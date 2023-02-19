@@ -4,6 +4,7 @@ import com.shulha.enums.EmploymentTypes;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "person")
@@ -60,5 +61,30 @@ public abstract class Person {
 
     public EmploymentTypes getEmploymentType() {
         return employmentType;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return Objects.equals(id, person.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return String.format(
+                "%s %n" +
+                        "id = %s, %n" +
+                        "name = %s, %n" +
+                        "surname = %s, %n" +
+                        "age = %s, %n",
+                employmentType, id, name, surname, age
+        );
     }
 }

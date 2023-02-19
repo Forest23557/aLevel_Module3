@@ -4,6 +4,7 @@ import com.shulha.enums.Subjects;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.Objects;
 import java.util.Optional;
 
 @Entity
@@ -18,6 +19,11 @@ public class Subject {
 
     public Subject() {
         subject = Subjects.NONE;
+    }
+
+    public Subject(final Subjects subject) {
+        this.subject = Optional.ofNullable(subject)
+                .orElseGet(() -> Subjects.NONE);
     }
 
     public void setSubject(final Subjects subject) {
@@ -35,5 +41,28 @@ public class Subject {
 
     public String getId() {
         return id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Subject subject = (Subject) o;
+        return Objects.equals(id, subject.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return String.format(
+                "Subject %n" +
+                        "id = %s, %n" +
+                        "name = %s",
+                id, subject
+        );
     }
 }

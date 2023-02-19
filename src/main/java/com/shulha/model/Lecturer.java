@@ -17,6 +17,10 @@ public class Lecturer extends Person {
     public Lecturer() {
     }
 
+    public Lecturer(final Subject subject) {
+        this.subject = subject;
+    }
+
     public void setSubject(final Subject subject) {
         this.subject = Optional.ofNullable(subject)
                 .orElseGet(() -> new Subject());
@@ -24,5 +28,14 @@ public class Lecturer extends Person {
 
     public Subject getSubject() {
         return subject;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() +
+                String.format(
+                        "%s%n",
+                        subject
+                );
     }
 }

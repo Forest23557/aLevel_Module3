@@ -1,12 +1,16 @@
 package com.shulha;
 
+import com.shulha.builder.SubjectBuilder;
+import com.shulha.builder.SubjectBuilderInterface;
 import com.shulha.config.FlywayUtil;
+import com.shulha.enums.Subjects;
+import com.shulha.model.Student;
+import com.shulha.model.Subject;
 import org.flywaydb.core.Flyway;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
+import java.util.UUID;
 
 public class Main {
     private static final Logger LOGGER = LoggerFactory.getLogger(Main.class);
@@ -18,6 +22,5 @@ public class Main {
         LOGGER.info("Migration is starting...");
         flyway.migrate();
         LOGGER.info("Migration was successfully completed!");
-
     }
 }
