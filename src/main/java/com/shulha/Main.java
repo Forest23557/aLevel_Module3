@@ -3,6 +3,7 @@ package com.shulha;
 import com.shulha.builder.SubjectBuilder;
 import com.shulha.builder.SubjectBuilderInterface;
 import com.shulha.config.FlywayUtil;
+import com.shulha.enums.Groups;
 import com.shulha.enums.Subjects;
 import com.shulha.model.Student;
 import com.shulha.model.Subject;
@@ -24,7 +25,9 @@ public class Main {
         flyway.migrate();
         LOGGER.info("Migration was successfully completed!");
 
-        final UniversityService instance = UniversityService.getInstance();
-        System.out.println(instance.getLecturer());
+//        final UniversityService instance = UniversityService.getInstance();
+//        System.out.println(instance.getRandomLecturer());
+//        System.out.println(instance.getRandomStudent());
+//        System.out.println(instance.getRandomGroup());
     }
 }

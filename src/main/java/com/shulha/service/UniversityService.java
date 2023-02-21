@@ -1,12 +1,13 @@
 package com.shulha.service;
 
 import com.shulha.builder.*;
+import com.shulha.enums.Groups;
+import com.shulha.enums.Names;
 import com.shulha.enums.Subjects;
-import com.shulha.model.Lecturer;
-import com.shulha.model.Mark;
-import com.shulha.model.Person;
-import com.shulha.model.Subject;
+import com.shulha.enums.Surnames;
+import com.shulha.model.*;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.Random;
@@ -59,14 +60,65 @@ public class UniversityService {
                 .getMark();
     }
 
-    public Person getLecturer() {
+    public Person getRandomLecturer() {
         final PersonBuilder<LecturerBuilder> personBuilder = new LecturerBuilder();
-        // TODO: 2/20/2023 create name and surname enum
+
         return personBuilder.getCertainBuilder()
-                .setSubject(null)
-                .setName("John")
-                .setSurname("Doe")
-                .setAge(32)
+                .setSubject(getRandomSubject())
+                .setName(getRandomName())
+                .setSurname(getRandomSurname())
+                .setAge(getRandomAge())
                 .getPerson();
+    }
+
+    public Person getRandomStudent() {
+        final PersonBuilder<StudentBuilder> personBuilder = new StudentBuilder();
+
+        return personBuilder.getCertainBuilder()
+                .setEntryDateTime(LocalDateTime.now())
+                .setMark(getRandomMarkWithRandomSubject())
+                .setName(getRandomName())
+                .setSurname(getRandomSurname())
+                .setAge(getRandomAge())
+                .getPerson();
+    }
+
+    public Group getRandomGroup() {
+        final GroupBuilderInterface groupBuilder = new GroupBuilder();
+        final int studentNumber = RANDOM.nextInt(10) + 1;
+
+        for (int i = 0; i < studentNumber; i++) {
+            groupBuilder.setStudent((Student) getRandomStudent());
+        }
+
+        return groupBuilder.setGroupValue(getRandomGroupName())
+                .getGroup();
+    }
+
+    private Groups getRandomGroupName() {
+        final int groupIndex = RANDOM.nextInt(81);
+        final Groups group = Groups.values()[groupIndex];
+
+        return group;
+    }
+
+    private String getRandomName() {
+        final int nameIndex = RANDOM.nextInt(40);
+        final String name = Names.values()[nameIndex]
+                .toString();
+
+        return name;
+    }
+
+    private String getRandomSurname() {
+        final int surnameIndex = RANDOM.nextInt(34);
+        final String surname = Surnames.values()[surnameIndex]
+                .toString();
+
+        return surname;
+    }
+
+    private int getRandomAge() {
+        return RANDOM.nextInt(100) + 16;
     }
 }

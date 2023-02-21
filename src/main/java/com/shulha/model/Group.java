@@ -9,6 +9,7 @@ import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.UUID;
 
 @Entity
 @Table(name = "student_group")
@@ -16,6 +17,7 @@ public class Group {
     @Id
     @GeneratedValue(strategy = javax.persistence.GenerationType.AUTO, generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @Column(name = "group_id")
     private String id;
     @Column(name = "group_name")
     private Groups group;
@@ -25,6 +27,7 @@ public class Group {
     private List<Student> students;
 
     public Group() {
+//        this.id = UUID.randomUUID().toString();
     }
 
     public void setId(final String id) {

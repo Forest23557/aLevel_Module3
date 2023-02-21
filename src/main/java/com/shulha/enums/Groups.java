@@ -81,5 +81,22 @@ public enum Groups {
     CA_D_4_1,
     CA_D_4_2,
     CA_D_4_3,
-    CA_D_4_4
+    CA_D_4_4;
+
+    public static int getIndexByName(final String name) {
+        int index = -1;
+
+        for(Groups group : values()) {
+            final String groupValue = group.toString()
+                    .toLowerCase();
+            final String lowerName = name.toLowerCase();
+
+            if (groupValue.contains(lowerName)) {
+                index = group.ordinal();
+                break;
+            }
+        }
+
+        return index;
+    }
 }

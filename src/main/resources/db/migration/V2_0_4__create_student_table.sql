@@ -3,11 +3,11 @@ CREATE TABLE IF NOT EXISTS "student" (
 "entry_date_time" TIMESTAMP WITHOUT TIME ZONE NOT NULL,
 "group_id" VARCHAR(36),
 FOREIGN KEY ("person_id")
-REFERENCES "person"("id")
+REFERENCES "person"("person_id")
 ON DELETE CASCADE
 ON UPDATE CASCADE,
 FOREIGN KEY ("group_id")
-REFERENCES "student_group"("id")
+REFERENCES "student_group"("group_id")
 ON DELETE SET NULL
 ON UPDATE CASCADE
 );

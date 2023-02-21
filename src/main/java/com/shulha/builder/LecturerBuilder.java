@@ -13,7 +13,7 @@ public class LecturerBuilder extends PersonBuilder<LecturerBuilder> {
         this.lecturer = (Lecturer) super.getPerson();
     }
 
-    public PersonBuilderInterface setSubject(final Subject subject) {
+    public LecturerBuilder setSubject(final Subject subject) {
         Optional.ofNullable(subject)
                 .ifPresentOrElse(
                         subject1 -> lecturer.setSubject(subject1),

@@ -5,6 +5,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.UUID;
 
 @Entity
 @Table(name = "person")
@@ -13,6 +14,7 @@ public abstract class Person {
     @Id
     @GeneratedValue(strategy = javax.persistence.GenerationType.AUTO, generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @Column(name = "person_id")
     private String id;
     private String name;
     private String surname;
@@ -21,6 +23,7 @@ public abstract class Person {
     private EmploymentTypes employmentType;
 
     public Person() {
+//        this.id = UUID.randomUUID().toString();
     }
 
     public void setId(final String id) {

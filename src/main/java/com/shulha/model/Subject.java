@@ -6,6 +6,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.UUID;
 
 @Entity
 @Table(name = "subject")
@@ -18,10 +19,11 @@ public class Subject {
     private Subjects subject;
 
     public Subject() {
-        subject = Subjects.NONE;
+        this(Subjects.NONE);
     }
 
     public Subject(final Subjects subject) {
+//        this.id = UUID.randomUUID().toString();
         this.subject = subject;
     }
 

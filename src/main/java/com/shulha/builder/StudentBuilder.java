@@ -17,7 +17,7 @@ public class StudentBuilder extends PersonBuilder<StudentBuilder> {
         this.student = (Student) super.getPerson();
     }
 
-    public PersonBuilderInterface setEntryDateTime(final LocalDateTime entryDateTime) {
+    public StudentBuilder setEntryDateTime(final LocalDateTime entryDateTime) {
         Optional.ofNullable(entryDateTime)
                 .ifPresentOrElse(
                         dateTime -> student.setEntryDateTime(dateTime),
@@ -27,7 +27,7 @@ public class StudentBuilder extends PersonBuilder<StudentBuilder> {
         return this;
     }
 
-    public PersonBuilderInterface setMarks(final List<Mark> marks) {
+    public StudentBuilder setMarks(final List<Mark> marks) {
         Optional.ofNullable(marks)
                 .ifPresentOrElse(
                         marks1 -> student.setMarks(marks1),
@@ -37,7 +37,7 @@ public class StudentBuilder extends PersonBuilder<StudentBuilder> {
         return this;
     }
 
-    public PersonBuilderInterface setMark(final Mark mark) {
+    public StudentBuilder setMark(final Mark mark) {
         Optional.ofNullable(mark)
                 .ifPresent(mark1 -> {
                     createMarksIfNotExist();

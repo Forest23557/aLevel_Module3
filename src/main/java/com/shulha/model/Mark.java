@@ -8,6 +8,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.UUID;
 
 @Entity
 @Table(name = "mark")
@@ -24,9 +25,11 @@ public class Mark {
     private int mark;
 
     public Mark() {
+//        this.id = UUID.randomUUID().toString();
     }
 
     public Mark(final Subject subject, final int mark) {
+        this();
         this.subject = Optional.ofNullable(subject)
                 .orElseGet(() -> new Subject());
         this.mark = mark;
@@ -77,7 +80,7 @@ public class Mark {
                         "id = %s, %n" +
                         "%s, %n" +
                         "mark value = %s%n" +
-                        "}%n",
+                        "}",
                 id, subject, mark
         );
     }

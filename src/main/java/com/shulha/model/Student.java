@@ -16,7 +16,7 @@ public class Student extends Person {
     @Column(name = "entry_date_time")
     private LocalDateTime entryDateTime;
     @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "student_id")
+    @JoinColumn(name = "person_id")
     @Fetch(FetchMode.SUBSELECT)
     private List<Mark> marks;
 
