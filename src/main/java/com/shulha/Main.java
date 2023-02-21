@@ -26,8 +26,5 @@ public class Main {
         LOGGER.info("Migration was successfully completed!");
 
 //        final UniversityService instance = UniversityService.getInstance();
-//        System.out.println(instance.getRandomLecturer());
-//        System.out.println(instance.getRandomStudent());
-//        System.out.println(instance.getRandomGroup());
     }
 }

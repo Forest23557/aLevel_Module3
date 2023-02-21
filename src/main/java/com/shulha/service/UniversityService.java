@@ -1,22 +1,36 @@
 package com.shulha.service;
 
+import com.shulha.DTO.GroupMarkDTO;
+import com.shulha.DTO.MinMaxMarkDTO;
+import com.shulha.DTO.StudentGroupDTO;
+import com.shulha.DTO.StudentMarkDTO;
 import com.shulha.builder.*;
 import com.shulha.enums.Groups;
 import com.shulha.enums.Names;
 import com.shulha.enums.Subjects;
 import com.shulha.enums.Surnames;
 import com.shulha.model.*;
+import com.shulha.repository.GroupRepository;
+import com.shulha.repository.MarkRepository;
+import com.shulha.repository.PersonRepository;
+import com.shulha.repository.SubjectRepository;
 
 import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
 
 public class UniversityService {
     private static final Random RANDOM = new Random();
-    private static UniversityService instance;
+    private final SubjectRepository subjectRepository;
+    private final MarkRepository markRepository;
+    private final PersonRepository personRepository;
+    private final GroupRepository groupRepository;
+    private static volatile UniversityService instance;
 
     private UniversityService() {
+        this.subjectRepository = SubjectRepository.getInstance();
+        this.markRepository = MarkRepository.getInstance();
+        this.personRepository = PersonRepository.getInstance();
+        this.groupRepository = GroupRepository.getInstance();
     }
 
     public static UniversityService getInstance() {
@@ -93,6 +107,60 @@ public class UniversityService {
 
         return groupBuilder.setGroupValue(getRandomGroupName())
                 .getGroup();
+    }
+
+    public void savePerson(final Person person) {
+        personRepository.save(person);
+    }
+
+    public void createAndSaveRandomStudent() {
+        savePerson(getRandomStudent());
+    }
+
+    public List<Group> getGroupByName(final String name) {
+        Optional<List<Group>> groupList = Optional.ofNullable(null);
+
+        if (Objects.nonNull(name) && !name.isBlank()) {
+            groupList = groupRepository.getGroupByName(name);
+        }
+
+        return groupList
+                .orElseGet(ArrayList::new);
+    }
+
+    public List<StudentGroupDTO> getStudentNumberInGroups() {
+        return groupRepository.getStudentNumberInGroups();
+    }
+
+    public List<GroupMarkDTO> getAverageMarksFromGroups() {
+        return groupRepository.getAverageMarksFromGroups();
+    }
+
+    public List<Lecturer> getLecturerByNameOrSurname(final String nameOrSurname) {
+        List<Lecturer> lecturers = new ArrayList<>();
+
+        if (Objects.nonNull(nameOrSurname) && !nameOrSurname.isBlank()) {
+            final String capitalizedNameOrSurname = nameOrSurname.toUpperCase();
+            lecturers = personRepository.getLecturerByNameOrSurname(capitalizedNameOrSurname);
+        }
+
+        return lecturers;
+    }
+
+    public List<StudentMarkDTO> getStudentsWhoseAverageMarksHigherThan(final int lowerBound) {
+        final List<StudentMarkDTO> studentMarkDTOList;
+
+        if (lowerBound < 0 || lowerBound > 11) {
+            studentMarkDTOList = new ArrayList<>();
+        } else {
+            studentMarkDTOList = personRepository.getStudentsWhoseAverageMarksHigherThan(lowerBound);
+        }
+
+        return studentMarkDTOList;
+    }
+
+    public List<MinMaxMarkDTO> getSubjectsWithTheWorstAndTheBestResults() {
+        return subjectRepository.getSubjectsWithTheWorstAndTheBestResults();
     }
 
     private Groups getRandomGroupName() {

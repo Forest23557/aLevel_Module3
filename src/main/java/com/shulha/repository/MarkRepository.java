@@ -7,7 +7,7 @@ import javax.persistence.EntityManager;
 
 public class MarkRepository {
     private static final EntityManager ENTITY_MANAGER = HibernateFactoryUtil.getEntityManager();
-    private static MarkRepository instance;
+    private static volatile MarkRepository instance;
 
     private MarkRepository() {
     }

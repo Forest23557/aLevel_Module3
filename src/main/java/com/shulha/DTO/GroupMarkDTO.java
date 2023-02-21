@@ -7,12 +7,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class StudentGroupDTO {
+public class GroupMarkDTO {
     @Id
     @Column(name = "group_name")
     private Groups groupName;
-    @Column(name = "student_number")
-    private int studentNumber;
+    @Column(name = "avg_mark")
+    private int averageMark;
 
     public Groups getGroupName() {
         return groupName;
@@ -22,19 +22,19 @@ public class StudentGroupDTO {
         this.groupName = groupName;
     }
 
-    public int getStudentNumber() {
-        return studentNumber;
+    public int getAverageMark() {
+        return averageMark;
     }
 
-    public void setStudentNumber(final int studentNumber) {
-        this.studentNumber = studentNumber;
+    public void setAverageMark(final int averageMark) {
+        this.averageMark = averageMark;
     }
 
     @Override
     public String toString() {
         return "{" +
                 "groupName = " + groupName +
-                ", studentNumber = " + studentNumber +
+                ", averageMark = " + averageMark +
                 "}\n";
     }
 }

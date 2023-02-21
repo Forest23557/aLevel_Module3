@@ -1,9 +1,11 @@
 package com.shulha.repository;
 
+import com.shulha.DTO.GroupMarkDTO;
 import com.shulha.DTO.StudentGroupDTO;
 import com.shulha.config.HibernateFactoryUtil;
 import com.shulha.enums.Groups;
 import com.shulha.model.Group;
+import lombok.SneakyThrows;
 import org.hibernate.HibernateException;
 
 import javax.persistence.EntityManager;
@@ -14,7 +16,7 @@ import java.util.Optional;
 
 public class GroupRepository {
     private static final EntityManager ENTITY_MANAGER = HibernateFactoryUtil.getEntityManager();
-    private static GroupRepository instance;
+    private static volatile GroupRepository instance;
 
     private GroupRepository() {
     }
@@ -35,47 +37,48 @@ public class GroupRepository {
         return instance;
     }
 
-    public List<Group> getGroupByName(final String name) {
+    public Optional<List<Group>> getGroupByName(final String name) {
         List<Group> groupList = null;
+        final int indexByName = Groups.getIndexByName(name);
 
-        if (Objects.nonNull(name) && !name.isBlank()) {
-            final int indexByName = Groups.getIndexByName(name);
-
-            try {
-                if (indexByName >= 0) {
-                    groupList = ENTITY_MANAGER.createNativeQuery("select * from student_group where group_name = ?;",
-                                    Group.class)
-                            .setParameter(1, indexByName)
-                            .getResultList();
-                } else {
-                    throw new IllegalArgumentException("Such group does not exist!");
-                }
-
-            } catch (IllegalStateException ex) {
-                ex.printStackTrace();
-            } catch (HibernateException ex) {
-                ex.printStackTrace();
+        try {
+            if (indexByName >= 0) {
+                groupList = ENTITY_MANAGER.createNativeQuery("select * from student_group where group_name = ?;",
+                                Group.class)
+                        .setParameter(1, indexByName)
+                        .getResultList();
+            } else {
+                throw new IllegalArgumentException("Such group does not exist!");
             }
+
+        } catch (IllegalStateException ex) {
+            ex.printStackTrace();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
         }
 
-        return Optional.ofNullable(groupList)
-                .orElseGet(ArrayList::new);
+        return Optional.ofNullable(groupList);
     }
 
+    @SneakyThrows
     public List<StudentGroupDTO> getStudentNumberInGroups() {
-        List<StudentGroupDTO> dtoList = ENTITY_MANAGER.createNativeQuery(
+        return ENTITY_MANAGER.createNativeQuery(
                 "SELECT g.group_name, COUNT(*) AS student_number FROM student_group as g " +
                         "LEFT JOIN student AS s ON g.group_id = s.group_id " +
                         "GROUP BY g.group_id;",
-                        StudentGroupDTO.class
-                ).getResultList();
-
-        return dtoList;
+                StudentGroupDTO.class
+        ).getResultList();
     }
 
-    public static void main(String[] args) {
-        final GroupRepository groupRepository = GroupRepository.getInstance();
-//        System.out.println(groupRepository.getGroupByName("Ap"));
-        System.out.println(groupRepository.getStudentNumberInGroups());
+    @SneakyThrows
+    public List<GroupMarkDTO> getAverageMarksFromGroups() {
+        return ENTITY_MANAGER.createNativeQuery(
+                "SELECT g.group_name, ROUND(AVG(m.mark_value)) AS avg_mark " +
+                        "FROM student_group AS g " +
+                        "LEFT JOIN student AS s ON g.group_id = s.group_id " +
+                        "LEFT JOIN mark AS m ON s.person_id = m.person_id " +
+                        "GROUP BY g.group_name;",
+                GroupMarkDTO.class
+        ).getResultList();
     }
 }
