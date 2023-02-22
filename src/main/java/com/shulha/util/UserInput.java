@@ -1,5 +1,6 @@
 package com.shulha.util;
 
+import lombok.SneakyThrows;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.BufferedReader;
@@ -110,5 +111,12 @@ public class UserInput {
         }
 
         return lowerBoundMark;
+    }
+
+    @SneakyThrows
+    public static void closeReader() {
+        if (Objects.nonNull(reader)) {
+            reader.close();
+        }
     }
 }
