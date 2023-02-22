@@ -44,8 +44,8 @@ public class Student extends Person {
     public String toString() {
         return super.toString() +
                 String.format(
-                        "entry date and time = %s, %n" +
-                                "marks = %n" +
+                        "entry date and time: %s, %n" +
+                                "MARKS: %n" +
                                 "%s",
                         entryDateTime.format(DATE_TIME_FORMATTER), marks
                 );

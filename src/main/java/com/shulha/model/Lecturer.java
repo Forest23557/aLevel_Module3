@@ -36,7 +36,7 @@ public class Lecturer extends Person {
     public String toString() {
         return super.toString() +
                 String.format(
-                        "%s%n",
+                        "%s",
                         subject
                 );
     }

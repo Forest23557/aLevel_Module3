@@ -70,11 +70,11 @@ public class Group {
     @Override
     public String toString() {
         return String.format(
-                "Group %s: " +
-                        "%s, %n" +
-                        "students = %n" +
+                "GROUP %s %n" +
+                        "ID: %s, %n" +
+                        "STUDENTS: %n" +
                         "%s",
-                id, group, students
+                group, id, students
         );
     }
 }

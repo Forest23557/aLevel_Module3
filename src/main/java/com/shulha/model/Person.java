@@ -83,10 +83,10 @@ public abstract class Person {
     public String toString() {
         return String.format(
                 "%s %n" +
-                        "id = %s, %n" +
-                        "name = %s, %n" +
-                        "surname = %s, %n" +
-                        "age = %s, %n",
+                        "ID: %s, %n" +
+                        "name: %s, %n" +
+                        "surname: %s, %n" +
+                        "age: %s, %n",
                 employmentType, id, name, surname, age
         );
     }
