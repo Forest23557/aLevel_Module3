@@ -128,7 +128,7 @@ public class UniversityService {
                 .orElseGet(ArrayList::new);
     }
 
-    public List<StudentGroupDTO> getStudentNumberInGroups() {
+    public List<StudentGroupDTO> getStudentNumberFromGroups() {
         return groupRepository.getStudentNumberInGroups();
     }
 
