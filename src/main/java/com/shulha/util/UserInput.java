@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Objects;
+import java.util.Optional;
 
 public class UserInput {
     private static BufferedReader reader;
@@ -14,8 +15,9 @@ public class UserInput {
         int userChoice = -1;
 
         try {
-            reader = new BufferedReader(
-                    new InputStreamReader(System.in));
+            reader = Optional.ofNullable(reader)
+                    .orElseGet(() -> new BufferedReader(
+                            new InputStreamReader(System.in)));
 
             do {
                 System.out.println("Choose your action: ");
@@ -40,8 +42,6 @@ public class UserInput {
                 break;
             } while (true);
 
-            reader.close();
-
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -53,8 +53,9 @@ public class UserInput {
         String line = null;
 
         try {
-            reader = new BufferedReader(
-                    new InputStreamReader(System.in));
+            reader = Optional.ofNullable(reader)
+                    .orElseGet(() -> new BufferedReader(
+                            new InputStreamReader(System.in)));
 
             do {
                 System.out.println(option);
@@ -70,8 +71,6 @@ public class UserInput {
                 break;
             } while (true);
 
-            reader.close();
-
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -83,8 +82,9 @@ public class UserInput {
         int lowerBoundMark = -1;
 
         try {
-            reader = new BufferedReader(
-                    new InputStreamReader(System.in));
+            reader = Optional.ofNullable(reader)
+                    .orElseGet(() -> new BufferedReader(
+                            new InputStreamReader(System.in)));
 
             do {
                 System.out.println(option);
@@ -104,8 +104,6 @@ public class UserInput {
                 }
                 break;
             } while (true);
-
-            reader.close();
 
         } catch (IOException ex) {
             ex.printStackTrace();

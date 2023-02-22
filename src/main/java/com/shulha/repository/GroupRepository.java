@@ -37,25 +37,13 @@ public class GroupRepository {
         return instance;
     }
 
+    @SneakyThrows
     public Optional<List<Group>> getGroupByName(final String name) {
-        List<Group> groupList = null;
-        final int indexByName = Groups.getIndexByName(name);
-
-        try {
-            if (indexByName >= 0) {
-                groupList = ENTITY_MANAGER.createNativeQuery("select * from student_group where group_name = ?;",
-                                Group.class)
-                        .setParameter(1, indexByName)
-                        .getResultList();
-            } else {
-                throw new IllegalArgumentException("Such group does not exist!");
-            }
-
-        } catch (IllegalStateException ex) {
-            ex.printStackTrace();
-        } catch (HibernateException ex) {
-            ex.printStackTrace();
-        }
+        final int indexByName = getIndexByName(name);
+        List<Group> groupList = ENTITY_MANAGER.createNativeQuery("select * from student_group where group_name = ?;",
+                        Group.class)
+                .setParameter(1, indexByName)
+                .getResultList();
 
         return Optional.ofNullable(groupList);
     }
@@ -80,5 +68,16 @@ public class GroupRepository {
                         "GROUP BY g.group_name;",
                 GroupMarkDTO.class
         ).getResultList();
+    }
+
+    @SneakyThrows
+    private int getIndexByName(final String name) {
+        final int indexByName = Groups.getIndexByName(name);
+
+        if (indexByName < 0) {
+            throw new IllegalArgumentException("Such group does not exist!");
+        }
+
+        return indexByName;
     }
 }
