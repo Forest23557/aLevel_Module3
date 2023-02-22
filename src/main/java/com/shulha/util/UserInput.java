@@ -5,6 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Objects;
 
 public class UserInput {
     private static BufferedReader reader;
@@ -39,6 +40,8 @@ public class UserInput {
                 break;
             } while (true);
 
+            reader.close();
+
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -66,6 +69,8 @@ public class UserInput {
                 line = answer;
                 break;
             } while (true);
+
+            reader.close();
 
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -99,6 +104,8 @@ public class UserInput {
                 }
                 break;
             } while (true);
+
+            reader.close();
 
         } catch (IOException ex) {
             ex.printStackTrace();
