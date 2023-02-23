@@ -1,0 +1,4 @@
+CREATE TABLE IF NOT EXISTS "subject" (
+"id" VARCHAR(36) NOT NULL PRIMARY KEY,
+"subject_name" INTEGER NOT NULL
+);

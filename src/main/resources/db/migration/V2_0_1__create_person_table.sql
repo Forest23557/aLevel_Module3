@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS "person" (
+"person_id" VARCHAR(36) NOT NULL PRIMARY KEY,
+"name" VARCHAR(255) NOT NULL,
+"surname" VARCHAR(255) NOT NULL,
+"age" INTEGER NOT NULL,
+"employment_type" INTEGER NOT NULL
+);

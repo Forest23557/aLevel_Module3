@@ -1,0 +1,12 @@
+CREATE TABLE IF NOT EXISTS "lecturer" (
+"person_id" VARCHAR(36) NOT NULL PRIMARY KEY,
+"subject_id" VARCHAR(36),
+FOREIGN KEY ("person_id")
+REFERENCES "person"("person_id")
+ON DELETE CASCADE
+ON UPDATE CASCADE,
+FOREIGN KEY ("subject_id")
+REFERENCES "subject"("id")
+ON DELETE SET NULL
+ON UPDATE CASCADE
+);

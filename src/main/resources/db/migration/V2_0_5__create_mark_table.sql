@@ -1,0 +1,14 @@
+CREATE TABLE IF NOT EXISTS "mark" (
+"id" VARCHAR(36) NOT NULL PRIMARY KEY,
+"subject_id" VARCHAR(36),
+"mark_value" INTEGER,
+"person_id" VARCHAR(36),
+FOREIGN KEY ("subject_id")
+REFERENCES "subject"("id")
+ON DELETE CASCADE
+ON UPDATE CASCADE,
+FOREIGN KEY ("person_id")
+REFERENCES "student"("person_id")
+ON DELETE CASCADE
+ON UPDATE CASCADE
+);
