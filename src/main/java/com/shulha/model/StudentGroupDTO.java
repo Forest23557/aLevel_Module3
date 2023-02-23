@@ -1,18 +1,23 @@
-package com.shulha.DTO;
+package com.shulha.model;
 
 import com.shulha.enums.Groups;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityResult;
 import javax.persistence.Id;
 
-@Entity
 public class StudentGroupDTO {
-    @Id
-    @Column(name = "group_name")
     private Groups groupName;
-    @Column(name = "student_number")
-    private int studentNumber;
+    private long studentNumber;
+
+    public StudentGroupDTO() {
+    }
+
+    public StudentGroupDTO(final Groups groupName, final long studentNumber) {
+        this.groupName = groupName;
+        this.studentNumber = studentNumber;
+    }
 
     public Groups getGroupName() {
         return groupName;
@@ -22,11 +27,11 @@ public class StudentGroupDTO {
         this.groupName = groupName;
     }
 
-    public int getStudentNumber() {
+    public long getStudentNumber() {
         return studentNumber;
     }
 
-    public void setStudentNumber(final int studentNumber) {
+    public void setStudentNumber(final long studentNumber) {
         this.studentNumber = studentNumber;
     }
 

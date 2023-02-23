@@ -9,15 +9,14 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-public class GroupBuilder implements GroupBuilderInterface {
+public class GroupBuilder {
     private Group group;
 
     public GroupBuilder() {
         this.group = new Group();
     }
 
-    @Override
-    public GroupBuilderInterface setId(String id) {
+    public GroupBuilder setId(String id) {
         Optional.ofNullable(id)
                 .filter(id1 -> !id1.isBlank())
                 .ifPresent(id1 -> group.setId(id1));
@@ -25,8 +24,7 @@ public class GroupBuilder implements GroupBuilderInterface {
         return this;
     }
 
-    @Override
-    public GroupBuilderInterface setGroupValue(Groups groupValue) {
+    public GroupBuilder setGroupValue(Groups groupValue) {
         Optional.ofNullable(groupValue)
                 .ifPresentOrElse(
                         group1 -> group.setGroup(group1),
@@ -36,8 +34,7 @@ public class GroupBuilder implements GroupBuilderInterface {
         return this;
     }
 
-    @Override
-    public GroupBuilderInterface setStudents(List<Student> students) {
+    public GroupBuilder setStudents(List<Student> students) {
         Optional.ofNullable(students)
                 .ifPresentOrElse(
                         students1 -> group.setStudents(students1),
@@ -47,8 +44,7 @@ public class GroupBuilder implements GroupBuilderInterface {
         return this;
     }
 
-    @Override
-    public GroupBuilderInterface setStudent(final Student student) {
+    public GroupBuilder setStudent(final Student student) {
         Optional.ofNullable(student)
                 .ifPresent(student1 -> {
                     createStudentsIfNotExist();
@@ -60,7 +56,6 @@ public class GroupBuilder implements GroupBuilderInterface {
         return this;
     }
 
-    @Override
     public Group getGroup() {
         return group;
     }

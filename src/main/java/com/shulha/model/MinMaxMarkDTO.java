@@ -1,4 +1,4 @@
-package com.shulha.DTO;
+package com.shulha.model;
 
 import com.shulha.enums.Subjects;
 import com.shulha.model.Subject;
@@ -7,13 +7,17 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity
 public class MinMaxMarkDTO {
-    @Id
-    @Column(name = "subject_name")
     private Subjects subject;
-    @Column(name = "avg_mark")
     private double minMaxMark;
+
+    public MinMaxMarkDTO() {
+    }
+
+    public MinMaxMarkDTO(final Subjects subject, final double minMaxMark) {
+        this.subject = subject;
+        this.minMaxMark = minMaxMark;
+    }
 
     public Subjects getSubject() {
         return subject;

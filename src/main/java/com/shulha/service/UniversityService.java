@@ -1,9 +1,9 @@
 package com.shulha.service;
 
-import com.shulha.DTO.GroupMarkDTO;
-import com.shulha.DTO.MinMaxMarkDTO;
-import com.shulha.DTO.StudentGroupDTO;
-import com.shulha.DTO.StudentMarkDTO;
+import com.shulha.model.GroupMarkDTO;
+import com.shulha.model.MinMaxMarkDTO;
+import com.shulha.model.StudentGroupDTO;
+import com.shulha.model.StudentMarkDTO;
 import com.shulha.builder.*;
 import com.shulha.enums.Groups;
 import com.shulha.enums.Names;
@@ -52,7 +52,7 @@ public class UniversityService {
     public Subject getRandomSubject() {
         final int subjectIndex = RANDOM.nextInt(179) + 1;
         final Subjects value = Subjects.values()[subjectIndex];
-        final SubjectBuilderInterface subjectBuilder = new SubjectBuilder();
+        final SubjectBuilder subjectBuilder = new SubjectBuilder();
 
         return subjectBuilder.setSubjectValue(value)
                 .getSubject();
@@ -60,14 +60,14 @@ public class UniversityService {
 
     public Mark getRandomMark() {
         final int markValue = RANDOM.nextInt(12) + 1;
-        final MarkBuilderInterface markBuilder = new MarkBuilder();
+        final MarkBuilder markBuilder = new MarkBuilder();
 
         return markBuilder.setMarkValue(markValue)
                 .getMark();
     }
 
     public Mark getRandomMarkWithRandomSubject() {
-        final MarkBuilderInterface markBuilder = new MarkBuilder(getRandomMark());
+        final MarkBuilder markBuilder = new MarkBuilder(getRandomMark());
 
         return markBuilder
                 .setSubject(getRandomSubject())
@@ -98,7 +98,7 @@ public class UniversityService {
     }
 
     public Group getRandomGroup() {
-        final GroupBuilderInterface groupBuilder = new GroupBuilder();
+        final GroupBuilder groupBuilder = new GroupBuilder();
         final int studentNumber = RANDOM.nextInt(10) + 1;
 
         for (int i = 0; i < studentNumber; i++) {

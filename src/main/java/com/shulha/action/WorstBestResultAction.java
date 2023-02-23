@@ -1,6 +1,6 @@
 package com.shulha.action;
 
-import com.shulha.DTO.MinMaxMarkDTO;
+import com.shulha.model.MinMaxMarkDTO;
 
 import java.util.List;
 

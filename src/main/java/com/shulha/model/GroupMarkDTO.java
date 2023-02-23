@@ -1,18 +1,18 @@
-package com.shulha.DTO;
+package com.shulha.model;
 
 import com.shulha.enums.Groups;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
-@Entity
 public class GroupMarkDTO {
-    @Id
-    @Column(name = "group_name")
     private Groups groupName;
-    @Column(name = "avg_mark")
-    private int averageMark;
+    private double averageMark;
+
+    public GroupMarkDTO() {
+    }
+
+    public GroupMarkDTO(final Groups groupName, final double averageMark) {
+        this.groupName = groupName;
+        this.averageMark = averageMark;
+    }
 
     public Groups getGroupName() {
         return groupName;
@@ -22,11 +22,11 @@ public class GroupMarkDTO {
         this.groupName = groupName;
     }
 
-    public int getAverageMark() {
+    public double getAverageMark() {
         return averageMark;
     }
 
-    public void setAverageMark(final int averageMark) {
+    public void setAverageMark(final double averageMark) {
         this.averageMark = averageMark;
     }
 

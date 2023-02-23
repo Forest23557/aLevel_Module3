@@ -1,6 +1,6 @@
 package com.shulha.action;
 
-import com.shulha.DTO.GroupMarkDTO;
+import com.shulha.model.GroupMarkDTO;
 
 import java.util.List;
 

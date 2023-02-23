@@ -1,18 +1,22 @@
-package com.shulha.DTO;
+package com.shulha.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity
 public class StudentMarkDTO {
-    @Id
-    @Column(name = "name")
     private String name;
-    @Column(name = "surname")
     private String surname;
-    @Column(name = "avg_mark")
     private double averageMark;
+
+    public StudentMarkDTO() {
+    }
+
+    public StudentMarkDTO(final String name, final String surname, final double averageMark) {
+        this.name = name;
+        this.surname = surname;
+        this.averageMark = averageMark;
+    }
 
     public String getName() {
         return name;

@@ -1,6 +1,6 @@
 package com.shulha.action;
 
-import com.shulha.DTO.StudentGroupDTO;
+import com.shulha.model.StudentGroupDTO;
 
 import java.util.List;
 

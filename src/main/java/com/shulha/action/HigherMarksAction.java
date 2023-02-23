@@ -1,6 +1,6 @@
 package com.shulha.action;
 
-import com.shulha.DTO.StudentMarkDTO;
+import com.shulha.model.StudentMarkDTO;
 import com.shulha.util.UserInput;
 
 import java.util.List;
